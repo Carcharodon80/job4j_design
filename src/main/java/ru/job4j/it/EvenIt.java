@@ -31,6 +31,8 @@ public class EvenIt implements Iterator<Integer> {
 
     /**
      * перебираем оставшиеся числа, пока не найдем четное, возвращаем его (и увеличиваем указатель на 1)
+     *
+     * @return четное число
      */
     @Override
     public Integer next() {
@@ -48,6 +50,7 @@ public class EvenIt implements Iterator<Integer> {
         }
         return rsl;
     }
+
 
     private boolean isEven(int number) {
         return number % 2 == 0;
