@@ -15,7 +15,7 @@ public class EvenIt implements Iterator<Integer> {
     }
 
     /**
-     * @return true - если дальше есть четное число
+     * @return true - если дальше есть четное число, и ставим указатель на это число
      */
     @Override
     public boolean hasNext() {
@@ -23,6 +23,7 @@ public class EvenIt implements Iterator<Integer> {
         for (int i = point; i < data.length; i++) {
             if (isEven(data[i])) {
                 rsl = true;
+                point = i;
                 break;
             }
         }
@@ -30,27 +31,15 @@ public class EvenIt implements Iterator<Integer> {
     }
 
     /**
-     * перебираем оставшиеся числа, пока не найдем четное, возвращаем его (и увеличиваем указатель на 1)
-     *
-     * @return четное число
+     * возвращаем четное число (указатель обновляется при вызове hasNext)
      */
     @Override
     public Integer next() {
         if (!hasNext()) {
             throw new NoSuchElementException();
         }
-        int rsl = 0;
-        while (point < data.length) {
-            if (isEven(data[point])) {
-                rsl = data[point++];
-                break;
-            } else {
-                point++;
-            }
-        }
-        return rsl;
+        return data[point++];
     }
-
 
     private boolean isEven(int number) {
         return number % 2 == 0;
