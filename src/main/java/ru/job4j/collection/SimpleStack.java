@@ -10,7 +10,15 @@ public class SimpleStack<T> {
         return linked.deleteFirst();
     }
 
+    public T poll() {
+        return linked.deleteLast();
+    }
+
     public void push(T value) {
-        linked.addFirst(value);
+        linked.add(value);
+    }
+
+    public int size() {
+        return linked.size();
     }
 }

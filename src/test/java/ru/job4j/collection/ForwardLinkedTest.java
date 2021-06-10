@@ -34,6 +34,15 @@ public class ForwardLinkedTest {
         assertThat(it.next(), is(2));
     }
 
+    @Test
+    public void whenLastDelete() {
+        ForwardLinked<Integer> linked = new ForwardLinked<>();
+        linked.add(1);
+        linked.add(2);
+        linked.add(3);
+        assertThat(linked.deleteLast(), is(3));
+    }
+
     @Test(expected = NoSuchElementException.class)
     public void when2AddAnd2Delete() {
         ForwardLinked<Integer> linked = new ForwardLinked<>();
@@ -42,6 +51,18 @@ public class ForwardLinkedTest {
         linked.deleteFirst();
         linked.deleteFirst();
         linked.deleteFirst();
+    }
+
+    @Test
+    public void whichSize() {
+        ForwardLinked<Integer> linked = new ForwardLinked<>();
+        linked.add(1);
+        linked.add(2);
+        linked.add(3);
+        linked.add(4);
+        linked.deleteFirst();
+        linked.deleteLast();
+        assertThat(linked.size(), is(2));
     }
 
     @Test
