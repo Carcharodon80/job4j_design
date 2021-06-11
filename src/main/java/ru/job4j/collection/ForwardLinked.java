@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 /**
  * 3. Удалить head в односвязном списке. [#51424]
  * 5. Очередь на двух стеках [#160]
+ * 6. Перевернуть связанный список [#161]
  */
 public class ForwardLinked<T> implements Iterable<T> {
     private Node<T> head;
@@ -77,6 +78,30 @@ public class ForwardLinked<T> implements Iterable<T> {
                 currentNode = currentNode.next;
             }
         }
+        return rsl;
+    }
+
+    /**
+     * переворачивает односвязный список
+     * @return false - если не надо переворачивать (size <= 1), иначе true
+     */
+    public boolean revert() {
+        boolean rsl = true;
+        if (head == null || head.next == null) {
+            rsl = false;
+        } else {
+            Node<T> currentNode = head;
+            Node<T> nextNode;
+            Node<T> previousNode = null;
+            while(currentNode != null) {
+                nextNode = currentNode.next;
+                currentNode.next = previousNode;
+                previousNode = currentNode;
+                currentNode = nextNode;
+            }
+            head = previousNode;
+        }
+
         return rsl;
     }
 
