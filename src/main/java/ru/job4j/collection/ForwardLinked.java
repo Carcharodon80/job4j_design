@@ -93,7 +93,7 @@ public class ForwardLinked<T> implements Iterable<T> {
             Node<T> currentNode = head;
             Node<T> nextNode;
             Node<T> previousNode = null;
-            while(currentNode != null) {
+            while (currentNode != null) {
                 nextNode = currentNode.next;
                 currentNode.next = previousNode;
                 previousNode = currentNode;
