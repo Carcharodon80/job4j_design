@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 
 /**
  * 3. Удалить head в односвязном списке. [#51424]
+ * 5. Очередь на двух стеках [#160]
  */
 public class ForwardLinked<T> implements Iterable<T> {
     private Node<T> head;

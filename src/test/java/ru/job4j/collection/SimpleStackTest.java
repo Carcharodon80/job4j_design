@@ -5,6 +5,9 @@ import static org.hamcrest.Matchers.is;
 
 import org.junit.Test;
 
+/**
+ * 4. Используя контейнер на базе связанного списка создать контейнер Stack [#71474]
+ */
 public class SimpleStackTest {
 
     @Test

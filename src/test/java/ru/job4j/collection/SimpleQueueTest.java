@@ -7,6 +7,9 @@ import org.junit.Test;
 
 import java.util.NoSuchElementException;
 
+/**
+ * 5. Очередь на двух стеках [#160]
+ */
 public class SimpleQueueTest {
 
     @Test
