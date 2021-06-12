@@ -7,15 +7,11 @@ package ru.job4j.collection;
 public class SimpleStack<T> {
     private final ForwardLinked<T> linked = new ForwardLinked<>();
 
-    //метод из пред. задания
-    public T pop() {
-        return linked.deleteLast();
-    }
 
     /**
-     * удаляем последний элемент из стэка
+     * удаляем элемент из стэка
      */
-    public T poll() {
+    public T pop() {
         return linked.deleteLast();
     }
 

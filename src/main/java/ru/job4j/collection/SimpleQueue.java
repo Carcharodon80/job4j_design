@@ -10,23 +10,23 @@ public class SimpleQueue<T> {
     /**
      * удаляем самый ранний из добавленных элементов из out,
      * если out пустой - перед удалением перемещаем элементы из in в out, при этом переворачиваем
+     *
      * @return - удаляемый элемент
      */
     public T poll() {
         T rsl;
         if (out.size() == 0) {
             while (in.size() != 0) {
-                out.push(in.poll());
+                out.push(in.pop());
             }
-            rsl = out.poll();
-        } else {
-            rsl = out.poll();
         }
+        rsl = out.pop();
         return rsl;
     }
 
     /**
      * добавляем элемент в in
+     *
      * @param value
      */
     public void push(T value) {
