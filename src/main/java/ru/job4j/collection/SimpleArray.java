@@ -4,6 +4,7 @@ import java.util.*;
 
 /**
  * 1. Динамический список на массиве. [#158]
+ * 1. Реализовать коллекцию Set на массиве [#996]
  */
 public class SimpleArray<T> implements Iterable<T> {
     private Object[] container = new Object[10];
