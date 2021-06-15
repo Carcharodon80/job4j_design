@@ -12,14 +12,14 @@ public class SimpleStack<T> {
      * удаляем элемент из стэка
      */
     public T pop() {
-        return linked.deleteLast();
+        return linked.deleteFirst();
     }
 
     /**
-     * добавляем элемент в конец стэка
+     * добавляем элемент в начало стэка
      */
     public void push(T value) {
-        linked.add(value);
+        linked.addFirst(value);
     }
 
     /**
