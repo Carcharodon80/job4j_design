@@ -9,19 +9,14 @@ import java.util.Objects;
  * 1. Реализовать коллекцию Set на массиве [#996]
  */
 public class SimpleSet<T> implements Set<T> {
-    private SimpleArray<T> set = new SimpleArray<>();
+    private final SimpleArray<T> set = new SimpleArray<>();
 
     @Override
     public boolean add(T value) {
-        boolean rsl = true;
-        for (T t : set) {
-            if (Objects.equals(t, value)) {
-                rsl = false;
-                break;
-            }
-        }
-        if (rsl) {
+        boolean rsl = false;
+        if (!this.contains(value)) {
             set.add(value);
+            rsl = true;
         }
         return rsl;
     }
