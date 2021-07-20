@@ -137,9 +137,9 @@ public class SimpleMapTest {
         map.put(1, "A");
         Iterator it = map.iterator();
         assertTrue(it.hasNext());
-        assertThat(it.next().toString(), is("MapEntry{" +
-                "key=" + 1 +
-                ", value=A" +
-                '}'));
+        assertThat(it.next().toString(), is("MapEntry{"
+                + "key=" + 1
+                + ", value=A"
+                + '}'));
     }
 }

@@ -183,10 +183,10 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
         @Override
         public String toString() {
-            return "MapEntry{" +
-                    "key=" + key +
-                    ", value=" + value +
-                    '}';
+            return "MapEntry{"
+                    + "key=" + key
+                    + ", value=" + value
+                    + '}';
         }
     }
 }
