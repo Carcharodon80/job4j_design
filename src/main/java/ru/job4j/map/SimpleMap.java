@@ -32,7 +32,6 @@ public class SimpleMap<K, V> implements Map<K, V> {
                 MapEntry<K, V> existedMapEntry = table[index];
                 if (key.equals(existedMapEntry.key)) {
                     table[index] = new MapEntry<>(key, value);
-                    countMod++;
                     rsl = true;
                 }
             }
@@ -58,19 +57,21 @@ public class SimpleMap<K, V> implements Map<K, V> {
         } else {
             if (table[0].key == null) {
                 table[0] = new MapEntry<>(null, value);
-                countMod++;
                 rsl = true;
             }
         }
         return rsl;
     }
 
+    private int hash(int hashCode) {
+        return hashCode ^ (hashCode >>> 16);
+    }
+
     /**
      * вычисляет индекс (номер бакета)
      */
     private int indexFor(int hashCode) {
-        int hash = hashCode ^ (hashCode >>> 16);
-        return hash % capacity;
+        return hash(hashCode) % capacity;
     }
 
     /**
@@ -83,7 +84,9 @@ public class SimpleMap<K, V> implements Map<K, V> {
         MapEntry<K, V>[] oldTable = this.table;
         this.table = new MapEntry[capacity];
         for (MapEntry<K, V> mapEntry : oldTable) {
-            this.put(mapEntry.key, mapEntry.value);
+            if (mapEntry != null) {
+                this.put(mapEntry.key, mapEntry.value);
+            }
         }
     }
 

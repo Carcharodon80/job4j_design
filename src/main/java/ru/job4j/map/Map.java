@@ -5,3 +5,4 @@ public interface Map<K, V> extends Iterable<K> {
     V get(K key);
     boolean remove(K key);
 }
+
