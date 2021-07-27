@@ -3,6 +3,7 @@ package ru.job4j.tree;
 import java.util.LinkedList;
 import java.util.Optional;
 import java.util.Queue;
+import java.util.function.Predicate;
 
 public class SimpleTree<E> implements Tree<E> {
     private final Node<E> root;
@@ -21,7 +22,7 @@ public class SimpleTree<E> implements Tree<E> {
         if (findBy(parent).isPresent() && findBy(child).isEmpty()) {
             Node<E> existedParent = findBy(parent).get();
             existedParent.children.add(new Node<>(child));
-             rsl = true;
+            rsl = true;
         }
         return rsl;
     }
@@ -31,16 +32,36 @@ public class SimpleTree<E> implements Tree<E> {
      */
     @Override
     public Optional<Node<E>> findBy(E value) {
+        Predicate<Node<E>> predicate = i -> i.value.equals(value);
+        return findByPredicate(predicate);
+    }
+
+    /**
+     * проверяет бинарное ли дерево
+     * @return false если не бинарное
+     */
+    public boolean isBinary() {
+        Predicate<Node<E>> predicate = i -> i.children.size() > 2;
+        return findByPredicate(predicate).isEmpty();
+    }
+
+    /**
+     * обходит дерево горизонтально
+     * каждый узел проверяет на переданное условие
+     * если узел соответствует условию - возвращает этот узел (в Optional)
+     * если ни один узел не подходит под условие - возвращает Optional.empty()
+     */
+    private Optional<Node<E>> findByPredicate(Predicate<Node<E>> condition) {
         Optional<Node<E>> rsl = Optional.empty();
-        Queue<Node<E>> data = new LinkedList<>();
-        data.offer(this.root);
-        while (!data.isEmpty()) {
-            Node<E> el = data.poll();
-            if (el.value.equals(value)) {
-                rsl = Optional.of(el);
+        Queue<Node<E>> queue = new LinkedList<>();
+        queue.offer(this.root);
+        while (!queue.isEmpty()) {
+            Node<E> node = queue.poll();
+            if (condition.test(node))  {
+                rsl = Optional.of(node);
                 break;
             }
-            data.addAll(el.children);
+            queue.addAll(node.children);
         }
         return rsl;
     }
