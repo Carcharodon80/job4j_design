@@ -24,13 +24,13 @@ public class Config {
     public void load() {
         try (BufferedReader out = new BufferedReader(new FileReader(this.path))) {
             while (out.ready()) {
-                String string = out.readLine();
-                if (string.startsWith("=")) {
+                String line = out.readLine();
+                if (!isValid(line)) {
                     throw new IllegalArgumentException();
                 }
-                if (!string.startsWith("#") && (!string.isEmpty())) {
-                    String[] keyAndValue = string.split("=");
-                    if (!string.endsWith("=")) {
+                if (!line.startsWith("#") && (!line.isEmpty())) {
+                    String[] keyAndValue = line.split("=");
+                    if (!line.endsWith("=")) {
                         values.put(keyAndValue[0], keyAndValue[1]);
                     } else {
                         values.put(keyAndValue[0], null);
@@ -40,6 +40,25 @@ public class Config {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean isValid(String line) {
+        boolean rsl = true;
+        if (line.startsWith("=")) {
+            rsl = false;
+        } else {
+            char[] symbols = line.toCharArray();
+            int count = 0;
+            for (char symbol : symbols) {
+                if (symbol == '=') {
+                    count++;
+                }
+            }
+            if (count > 1) {
+                rsl = false;
+            }
+        }
+        return rsl;
     }
 
     public String value(String key) {

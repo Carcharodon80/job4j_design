@@ -32,4 +32,14 @@ public class ConfigTest {
         config.load();
         assertThat(config.getValues().size(), is(0));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenTwoEqualSign() {
+        String path = "./data/two_equal_sign.properties";
+        Config config = new Config(path);
+        config.load();
+        assertThat(config.value("name"), is("Roman Akulov"));
+        assertThat(config.value("surname"), is("Akulov"));
+        assertThat(config.value("country"), is("Russia"));
+    }
 }
