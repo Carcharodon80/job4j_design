@@ -6,7 +6,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
@@ -39,5 +38,20 @@ public class AnalizyTest {
             e.printStackTrace();
         }
         assertThat(lines.size(), is(1));
+    }
+
+    @Test
+    public void whenAnalizy3() {
+        Analizy analizy = new Analizy();
+        ArrayList<String> lines = new ArrayList<>();
+        analizy.unavailable("./data/analizy_3.log", "./data/analizy_3_final.log");
+        try (BufferedReader in = new BufferedReader(new FileReader("./data/analizy_3_final.log"))) {
+            while (in.ready()) {
+                lines.add(in.readLine());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assertThat(lines.size(), is(2));
     }
 }

@@ -23,10 +23,10 @@ public class Analizy {
                     if (line.startsWith("200") || line.startsWith("300")) {
                         timeline = timeline + getTime(line) + System.lineSeparator();
                         serverWork = true;
-                        try (BufferedWriter out = new BufferedWriter(new FileWriter(target))) {
-                            out.write(timeline);
-                        }
                     }
+                }
+                try (BufferedWriter out = new BufferedWriter(new FileWriter(target))) {
+                    out.write(timeline);
                 }
             }
         } catch (IOException e) {
