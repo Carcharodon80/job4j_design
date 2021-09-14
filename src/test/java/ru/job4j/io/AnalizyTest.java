@@ -1,57 +1,83 @@
 package ru.job4j.io;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.io.*;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 public class AnalizyTest {
+    @Rule
+    public TemporaryFolder folder = new TemporaryFolder();
+
     @Test
-    public void whenAnalizy1() {
+    public void whenAnalizy1() throws IOException {
         Analizy analizy = new Analizy();
-        ArrayList<String> lines = new ArrayList<>();
-        analizy.unavailable("./data/analizy_1.log", "./data/analizy_1_final.log");
-        try (BufferedReader in = new BufferedReader(new FileReader("./data/analizy_1_final.log"))) {
-            while (in.ready()) {
-                lines.add(in.readLine());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        File source = folder.newFile("analizy.log");
+        File target = folder.newFile("analizy_target.log");
+        try (PrintWriter out = new PrintWriter(source)) {
+            out.println("300 10:56:01");
+            out.println("500 10:57:01");
+            out.println("400 10:58:01");
+            out.println("200 10:59:01");
+            out.println("500 11:01:02");
+            out.println("200 11:02:02");
         }
-        assertThat(lines.size(), is(2));
+        analizy.unavailable(source.toString(), target.toString());
+        try (BufferedReader in = new BufferedReader(new FileReader(target))) {
+            while (in.ready()) {
+                assertThat(in.readLine(), is("10:57:01;10:59:01"));
+                assertThat(in.readLine(), is("11:01:02;11:02:02"));
+                assertFalse(in.ready());
+            }
+        }
     }
 
     @Test
-    public void whenAnalizy2() {
+    public void whenAnalizy2() throws IOException {
         Analizy analizy = new Analizy();
-        ArrayList<String> lines = new ArrayList<>();
-        analizy.unavailable("./data/analizy_2.log", "./data/analizy_2_final.log");
-        try (BufferedReader in = new BufferedReader(new FileReader("./data/analizy_2_final.log"))) {
-            while (in.ready()) {
-                lines.add(in.readLine());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        File source = folder.newFile("analizy.log");
+        File target = folder.newFile("analizy_target.log");
+        try (PrintWriter out = new PrintWriter(source)) {
+            out.println("300 10:56:01");
+            out.println("500 10:57:01");
+            out.println("400 10:58:01");
+            out.println("500 10:59:01");
+            out.println("400 11:01:02");
+            out.println("200 11:02:02");
         }
-        assertThat(lines.size(), is(1));
+        analizy.unavailable(source.toString(), target.toString());
+        try (BufferedReader in = new BufferedReader(new FileReader(target))) {
+            while (in.ready()) {
+                assertThat(in.readLine(), is("10:57:01;11:02:02"));
+                assertFalse(in.ready());
+            }
+        }
     }
 
     @Test
-    public void whenAnalizy3() {
+    public void whenAnalizy3() throws IOException {
         Analizy analizy = new Analizy();
-        ArrayList<String> lines = new ArrayList<>();
-        analizy.unavailable("./data/analizy_3.log", "./data/analizy_3_final.log");
-        try (BufferedReader in = new BufferedReader(new FileReader("./data/analizy_3_final.log"))) {
-            while (in.ready()) {
-                lines.add(in.readLine());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        File source = folder.newFile("analizy.log");
+        File target = folder.newFile("analizy_target.log");
+        try (PrintWriter out = new PrintWriter(source)) {
+            out.println("300 10:56:01");
+            out.println("500 10:57:01");
+            out.println("200 10:58:01");
+            out.println("500 10:59:01");
+            out.println("400 11:01:02");
+            out.println("500 11:02:02");
         }
-        assertThat(lines.size(), is(2));
+        analizy.unavailable(source.toString(), target.toString());
+        try (BufferedReader in = new BufferedReader(new FileReader(target))) {
+            while (in.ready()) {
+                assertThat(in.readLine(), is("10:57:01;10:58:01"));
+                assertThat(in.readLine(), is("10:59:01;"));
+                assertFalse(in.ready());
+            }
+        }
     }
 }
