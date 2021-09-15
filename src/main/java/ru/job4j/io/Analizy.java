@@ -8,7 +8,8 @@ import java.io.*;
  */
 public class Analizy {
     public void unavailable(String source, String target) {
-        try (BufferedReader in = new BufferedReader(new FileReader(source))) {
+        try (BufferedReader in = new BufferedReader(new FileReader(source));
+             BufferedWriter out = new BufferedWriter(new FileWriter(target))) {
             boolean serverWork = true;
             String timeline = "";
             String line;
@@ -25,9 +26,8 @@ public class Analizy {
                         serverWork = true;
                     }
                 }
-                try (BufferedWriter out = new BufferedWriter(new FileWriter(target))) {
-                    out.write(timeline);
-                }
+                out.write(timeline);
+                timeline = "";
             }
         } catch (IOException e) {
             e.printStackTrace();
