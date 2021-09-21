@@ -5,6 +5,7 @@ import java.util.Map;
 
 /**
  * 5.1. Именованные аргументы [#295518]
+ * 5.2. Архивировать проект [#861]
  */
 public class ArgsName {
     private final Map<String, String> values = new HashMap<>();

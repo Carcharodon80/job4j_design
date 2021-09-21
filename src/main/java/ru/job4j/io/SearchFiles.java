@@ -11,7 +11,7 @@ import java.util.function.Predicate;
 import static java.nio.file.FileVisitResult.CONTINUE;
 
 /**
- * 4.1. Сканирование файловой системы. [#106929]
+ * 4.1. Сканирование файловой системы [#106929]
  */
 public class SearchFiles extends SimpleFileVisitor<Path> {
     Predicate<Path> condition;

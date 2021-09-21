@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 /**
  * 4.1. Сканирование файловой системы. [#106929]
  * 5. Валидация параметров запуска. [#246865]
+ * 5.2. Архивировать проект [#861]
  */
 public class Search {
     public static void main(String[] args) throws IOException {
