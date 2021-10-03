@@ -6,6 +6,7 @@ import java.util.Map;
 /**
  * 5.1. Именованные аргументы [#295518]
  * 5.2. Архивировать проект [#861]
+ * 7. Scanner [#504791]
  */
 public class ArgsName {
     private final Map<String, String> values = new HashMap<>();
@@ -44,6 +45,10 @@ public class ArgsName {
         ArgsName names = new ArgsName();
         names.parse(args);
         return names;
+    }
+
+    public Map<String, String> getValues() {
+        return values;
     }
 
     public static void main(String[] args) {
