@@ -6,7 +6,6 @@ import java.net.Socket;
 
 /**
  * 1. Бот [#7921]
- *
  */
 public class EchoServer {
     public static void main(String[] args) throws IOException {
