@@ -11,7 +11,7 @@ import java.io.StringWriter;
 import java.util.Arrays;
 
 /**
- * 4. JAXB. Преобразование XML в POJO. [#315063]
+ * 4. JAXB. Преобразование XML в POJO. [#315063 #218348]
  */
 @XmlRootElement(name = "book")
 @XmlAccessorType(XmlAccessType.FIELD)
