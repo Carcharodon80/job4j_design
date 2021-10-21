@@ -8,11 +8,14 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "dataBook")
 public class Databook {
     @XmlAttribute
-    private final String country;
+    private String country;
     @XmlAttribute
-    private final int year;
+    private int year;
     @XmlAttribute
-    private final String publisher;
+    private String publisher;
+
+    public Databook() {
+    }
 
     public Databook(String country, int year, String publisher) {
         this.country = country;
