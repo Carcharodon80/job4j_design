@@ -5,6 +5,7 @@ import java.nio.file.Files;
 
 /**
  * 1. Что такое Сериализация? [#313163]
+ * 5. Преобразование JSON в POJO. JsonObject [#315064]
  */
 public class Contact implements Serializable {
     private static final long serialVersionUID = 1L;

@@ -1,12 +1,11 @@
 package ru.job4j.io;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import java.util.Arrays;
+import org.json.*;
 
 /**
  * 2. Формат JSON [#313164]
+ * 5. Преобразование JSON в POJO. JsonObject [#315064]
  */
 public class Pet {
     private final String name;
@@ -26,12 +25,17 @@ public class Pet {
     public static void main(String[] args) {
         Pet pet = new Pet("Doggy", false, 7, new Contact(456789, "+7 123 45 67"),
                 "Mummy", "Daddy");
-        final Gson gson = new GsonBuilder().create();
+        /*final Gson gson = new GsonBuilder().create();
         String petJson = gson.toJson(pet);
         System.out.println(petJson);
 
         Pet petMod = gson.fromJson(petJson, Pet.class);
-        System.out.println(petMod);
+        System.out.println(petMod);*/
+
+        System.out.println(pet);
+
+        JSONObject jsonObject = new JSONObject(pet);
+        System.out.println(jsonObject);
     }
 
     @Override
@@ -43,5 +47,25 @@ public class Pet {
                 + ", ownerContact=" + ownerContact
                 + ", parents=" + Arrays.toString(parents)
                 + '}';
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isBird() {
+        return isBird;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public Contact getOwnerContact() {
+        return ownerContact;
+    }
+
+    public String[] getParents() {
+        return parents;
     }
 }
