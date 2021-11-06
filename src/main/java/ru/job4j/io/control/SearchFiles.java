@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.regex.Pattern;
 
 /**
  * 2. Поиск файлов по критерию [#783]
@@ -32,9 +33,11 @@ public class SearchFiles {
             String mask = name.replace(".", "[.]").
                     replace("*", ".*").
                     replace("?", ".");
-            paths = search(directory, p -> p.toFile().getName().matches(mask));
+            Pattern pattern = Pattern.compile(mask);
+            paths = search(directory, p -> pattern.matcher(p.toFile().getName()).find());
         } else if ("regex".equals(type)) {
-            paths = search(directory, p -> p.toFile().getName().matches(name));
+            Pattern pattern = Pattern.compile(name);
+            paths = search(directory, p -> pattern.matcher(p.toFile().getName()).find());
         }
         writeToFile(paths, output);
     }
