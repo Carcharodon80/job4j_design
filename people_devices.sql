@@ -24,7 +24,7 @@ insert into devices (name, price) values ('LG', 3000);
 insert into people (name) values ('John');
 insert into people (name) values ('Maria');
 insert into people (name) values ('Ivan');
-insert into people (name) values ('Ded Mazai');
+insert into people (name) values ('Ded Mazay');
 
 insert into devices_people (device_id, people_id) values (1, 1);
 insert into devices_people (device_id, people_id) values (2, 1);
