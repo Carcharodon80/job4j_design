@@ -27,6 +27,18 @@ insert into cities (name, country_id) values ('Paris', 2);
 insert into cities (name, country_id) values ('Lion', 2);
 insert into cities (name, country_id) values ('Tunis', 6); 
 
-select Страна.name, Страна.area, Город.name from countries as Страна join cities as Город on Город.country_id = Страна.id and Страна.area = 'Europe';
-select countries.name as Страна, area as Материк, cities.name as Город from countries join cities on countries.id = cities.country_id;
-select countries.name as Страна_Город, area as Материк from countries join cities on countries.name = cities.name;
+select Страна.name, Страна.area, Город.name 
+from countries as Страна 
+join cities as Город 
+on Город.country_id = Страна.id 
+and Страна.area = 'Europe';
+
+select countries.name as Страна, area as Материк, cities.name as Город 
+from countries 
+join cities 
+on countries.id = cities.country_id;
+
+select countries.name as Страна_Город, area as Материк 
+from countries 
+join cities 
+on countries.name = cities.name;
