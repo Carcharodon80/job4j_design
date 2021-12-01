@@ -38,9 +38,9 @@ select * from departments left join employers
 	where employers.id is null; 
 	
 --Используя left и right join написать запросы, которые давали бы одинаковый результат
-select * from departments left join employers 
+select employers.name, departments.name from departments left join employers 
 	on employers.department_id = departments.id;
-select * from employers right join departments 
+select employers.name, departments.name from employers right join departments 
 	on employers.department_id = departments.id; 
 	
 --Создать таблицу teens с атрибутами name, gender и заполнить ее
