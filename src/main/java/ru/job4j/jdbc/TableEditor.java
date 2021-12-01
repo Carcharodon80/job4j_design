@@ -69,7 +69,7 @@ public class TableEditor implements AutoCloseable {
     }
 
     /**
-     * - renameColumn() – переименовывает столбец.
+     * - renameColumn() – переименовывает столбец
      */
     public void renameColumn(String tableName, String columnName, String newColumnName) throws Exception {
         String query = String.format("alter table %s rename column %s to %s;",
