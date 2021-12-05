@@ -30,16 +30,22 @@ public class ImportDB {
     /**
      * загружает данные из .txt файла в список
      * Формат данных dump.txt:
-     *  Petr Arsentev;parsentev@yandex.ru;
-     *  Ivan Ivanov;iivanov@gmail.com;
+     * Petr Arsentev;parsentev@yandex.ru;
+     * Ivan Ivanov;iivanov@gmail.com;
      */
     public List<User> load() throws IOException {
         List<User> users = new ArrayList<>();
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
             rd.lines().forEach(x -> {
                 String[] line = x.split(";");
+                if (line.length != 2) {
+                    throw new IllegalArgumentException("Некорректные данные в файле.");
+                }
                 String name = line[0];
                 String email = line[1];
+                if ("".equals(name) || "".equals(email) || !email.contains("@")) {
+                    throw new IllegalArgumentException("Некорректные данные в файле.");
+                }
                 users.add(new User(name, email));
             });
         }
