@@ -43,7 +43,7 @@ public class ImportDB {
                 }
                 String name = line[0];
                 String email = line[1];
-                if ("".equals(name) || "".equals(email) || !email.contains("@")) {
+                if (name.isEmpty() || email.isEmpty() || !email.contains("@")) {
                     throw new IllegalArgumentException("Некорректные данные в файле.");
                 }
                 users.add(new User(name, email));
